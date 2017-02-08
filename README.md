@@ -1,6 +1,7 @@
 # Donders Sessions on Data Visualization
 
 # File organization
+```
 .
 |-- CONTRIBUTORS.md
 |-- README.md                 Basic info about content, context, and organization
@@ -33,3 +34,4 @@
         |-- workshop_behavior
         |-- workshop_eeg
         |-- workshop_fmri
+```
