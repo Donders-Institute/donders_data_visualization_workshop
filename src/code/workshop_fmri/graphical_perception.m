@@ -143,7 +143,6 @@ switch lower(todo)
                 'YTick',[])
         xlabel('x')
         ylabel('y')
-        title('case A')
         axis square
 
         p(2).select();
@@ -156,7 +155,6 @@ switch lower(todo)
                 'YTick',[])
         xlabel('x')
         ylabel('y')
-        title('case B')
         axis square    
 
         p(3).select();
@@ -168,41 +166,9 @@ switch lower(todo)
                 'YLim',[0,13], ...
                 'YTick',[])
         xlabel('x')
-        ylabel('y') 
-        title('case C')
+        ylabel('y')    
         axis square    
-        
-    case 'plot_differences'
-
-        x       = -5:0.05:3;
-        y_a     = 2.^x + 2;
-        y_b1    = 2.^x + 3; % Difference is constant
-        y_b2    = 2.^x + 0.05 * (x + 5) + 3; % Difference increases linearly
-        y_b3    = 2.^x + 1.25.^x + 2.6723; % Difference increases exponentially
-        
-        clear g
-        g(1,1)=gramm('x',x,'y',(y_b1-y_a));
-        g(1,1).geom_line();
-        g(1,1).set_names('x','x','y','difference of curves');
-        g(1,1).set_title('case A');
-
-
-        g(1,2)=gramm('x',x,'y',(y_b2-y_a));
-        g(1,2).geom_line();
-        g(1,2).set_names('x','x','y','difference of curves');
-        g(1,2).set_title('case B');
-        
-        g(1,3)=gramm('x',x,'y',(y_b3-y_a));
-        g(1,3).geom_line();
-        g(1,3).set_names('x','x','y','difference of curves');
-        g(1,3).set_title('case C');
-        
-        figure('Position',[100 100 900 300]);
-        g.set_title('How does the difference between curves change with x? Answer:')
-        g.draw();
-        
 end
-
 
 function h = draw_circle(x,y,r)
 hold on
@@ -211,3 +177,4 @@ xunit = r * cos(th) + x;
 yunit = r * sin(th) + y;
 h = plot(xunit, yunit,'k-');
 hold off
+
