@@ -1,10 +1,100 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 0. Preliminaries
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Define some directories
+% workshop_dir = '/Users/bramzandbelt/surfdrive/projects/donders_data_visualization_workshop/';
+workshop_dir = 'h:\common\temporary\donders_data_visualization_workshop';
+data_dir     = fullfile(workshop_dir,'data','workshop_fmri');
+glm_dir      = fullfile(workshop_dir,'data','workshop_fmri','fmri','stat_stop_left_vs_stop_both');
+roi_dir      = fullfile(data_dir,'fmri','region_of_interest_masks');
+
+% Provide access to MATLAB and SPM
+%addpath(genpath('/Users/bramzandbelt/Documents/MATLAB/spm12/'))
+addpath('h:\common\matlab\spm12');
+
+% Provide access to a few toolboxes we are going to use
+addpath(genpath(fullfile(workshop_dir,'opt','gramm')))
+addpath(genpath(fullfile(workshop_dir,'opt','panel-2.12')))
+addpath(genpath(fullfile(workshop_dir,'opt','slice_display')))
+
+% Provide access to the code written for this workshop
+addpath(genpath(fullfile(workshop_dir,'src','code','workshop_fmri')))
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 1. Evaluating figures
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 2. Anscombe's quartet
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% 2.1. Descriptive statistics
+
+% Load Anscombe's quartet dataset
+load(fullfile(data_dir,'anscombe.mat'))
+
+% 1. Number of observations (x,y-pairs)
+fprintf(1, '01. Number of observations (x,y-pairs) \n Set 1: %.0f \n Set 2: %.0f \n Set 3: %.0f \n Set 4: %.0f \n', ... 
+        numel(anscombe.x1), ...
+        numel(anscombe.x2), ...
+        numel(anscombe.x3), ...
+        numel(anscombe.x4));
+
+% 2. Mean of X's in each set
+fprintf(1, '02. Mean of X''s in each set \n Set 1: %.2f \n Set 2: %.2f \n Set 3: %.2f \n Set 4: %.2f \n', ... 
+        mean([anscombe.x1;anscombe.x2;anscombe.x3;anscombe.x4],2));
+
+% 3. Mean of Y's in each set
+fprintf(1, '03. Mean of Y''s in each set \n Set 1: %.2f \n Set 2: %.2f \n Set 3: %.2f \n Set 4: %.2f \n', ... 
+        mean([anscombe.y1;anscombe.y2;anscombe.y3;anscombe.y4],2));
+
+% 4. Linear regression coefficients
+fprintf(1, '04. Linear regression coefficients (intercept, slope) in each set \n Set 1: %.2f, %.2f \n Set 2: %.2f, %.2f \n Set 3: %.2f, %.2f \n Set 4: %.2f, %.2f \n', ... 
+        regress(anscombe.y1',[ones(11,1) anscombe.x1']), ...
+        regress(anscombe.y2',[ones(11,1) anscombe.x2']), ...
+        regress(anscombe.y3',[ones(11,1) anscombe.x3']), ...
+        regress(anscombe.y4',[ones(11,1) anscombe.x4']));
+
+% 5. Sum of squares
+fprintf(1, '05. Sum of squares of X''s in each set \n Set 1: %.2f \n Set 2: %.2f \n Set 3: %.2f \n Set 4: %.2f \n', ... 
+        sum((anscombe.x1 - mean(anscombe.x1)).^2), ...
+        sum((anscombe.x2 - mean(anscombe.x2)).^2), ...
+        sum((anscombe.x3 - mean(anscombe.x3)).^2), ...
+        sum((anscombe.x4 - mean(anscombe.x4)).^2));
+
+% 6. Correlation coefficients
+fprintf(1, '06. Correlation coefficients in each set \n Set 1: %.2f \n Set 2: %.2f \n Set 3: %.2f \n Set 4: %.2f \n', ... 
+        corr(anscombe.x1',anscombe.y1','type','pearson'), ...
+        corr(anscombe.x2',anscombe.y2','type','pearson'), ...
+        corr(anscombe.x3',anscombe.y3','type','pearson'), ...
+        corr(anscombe.x4',anscombe.y4','type','pearson'));
+
+%% 2.2. Graphical analysis
+    
+clear g 
+
+% Scatter of set 1
+g(1,1)=gramm('x',anscombe.x1,'y',anscombe.y1);
+g(1,1).set_names('x','x1','y','y1');
+g(1,1).geom_point();
+
+% Scatter of set 2
+g(1,2)=gramm('x',anscombe.x2,'y',anscombe.y2);
+g(1,2).set_names('x','x2','y','y2');
+g(1,2).geom_point();
+
+% Scatter of set 3
+g(2,1)=gramm('x',anscombe.x3,'y',anscombe.y3);
+g(2,1).set_names('x','x3','y','y3');
+g(2,1).geom_point();
+
+% Scatter of set 4
+g(2,2)=gramm('x',anscombe.x4,'y',anscombe.y4);
+g(2,2).set_names('x','x4','y','y4');
+g(2,2).geom_point();
+
+g.draw();
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 3. Graphical perception
@@ -19,6 +109,12 @@ graphical_perception('decoding_differences')
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 4. Visualizing low-dimensional data: simple plots
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+simple_plot('barplot',data_dir)
+
+simple_plot('boxplot',data_dir)
+
+simple_plot('violinplot',data_dir)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 5. Visualizing high-dimensional data: fMRI data
