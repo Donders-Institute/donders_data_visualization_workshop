@@ -6,3 +6,6 @@
 ## Documents
 *.docx
 *.eps
+
+## System files
+*.DS_Store
