@@ -185,7 +185,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Figures play a central role in the communication of research findings from scientific studies. Therefore, it is important that they accurately represent the underlying data. However, visualizations can be misleading and graphical design choices can bias perceptions (e.g. check out <a href="https://flowingdata.com/2017/02/09/how-to-spot-visualization-lies/">this blogpost from Flowing Data</a>). This workshop aims to promote critical thinking about visualizing scientific data and provides you with tools and advise that will help you make better figures. More specifically, you will:</p>
+<p>Figures play a central role in the communication of research findings from scientific studies. Therefore, it is important that they accurately represent the underlying data. However, visualizations can be misleading and graphical design choices can bias perceptions (e.g. check out <a href="https://flowingdata.com/2017/02/09/how-to-spot-visualization-lies/">this blogpost from Flowing Data</a>). This workshop aims to promote critical thinking about visualizing scientific data and provides you with tools and advice that will help you make better figures. More specifically, you will:</p>
 <ol>
 <li>evaluate figures from the neuroscience literature;</li>
 <li>see how data visualization complements statistical testing;</li>
@@ -199,7 +199,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="c">%%python </span>
@@ -640,15 +640,15 @@ You will evaluate one or more figures from recent fMRI studies for clarity and c
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="c">% Define some directories</span>
-<span class="c">% workshop_dir = &#39;/Users/bramzandbelt/surfdrive/projects/donders_data_visualization_workshop/&#39;;</span>
-<span class="n">workshop_dir</span> <span class="p">=</span> <span class="s">&#39;h:\common\temporary\donders_data_visualization_workshop&#39;</span><span class="p">;</span>
+<span class="n">workshop_dir</span> <span class="p">=</span> <span class="s">&#39;/Users/bramzandbelt/surfdrive/projects/donders_data_visualization_workshop/&#39;</span><span class="p">;</span>
+<span class="c">% workshop_dir = &#39;h:\common\temporary\donders_data_visualization_workshop&#39;;</span>
 <span class="n">data_dir</span>     <span class="p">=</span> <span class="n">fullfile</span><span class="p">(</span><span class="n">workshop_dir</span><span class="p">,</span><span class="s">&#39;data&#39;</span><span class="p">,</span><span class="s">&#39;workshop_fmri&#39;</span><span class="p">);</span>
 <span class="n">glm_dir</span>      <span class="p">=</span> <span class="n">fullfile</span><span class="p">(</span><span class="n">workshop_dir</span><span class="p">,</span><span class="s">&#39;data&#39;</span><span class="p">,</span><span class="s">&#39;workshop_fmri&#39;</span><span class="p">,</span><span class="s">&#39;fmri&#39;</span><span class="p">,</span><span class="s">&#39;stat_stop_left_vs_stop_both&#39;</span><span class="p">);</span>
 <span class="n">roi_dir</span>      <span class="p">=</span> <span class="n">fullfile</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span><span class="s">&#39;fmri&#39;</span><span class="p">,</span><span class="s">&#39;region_of_interest_masks&#39;</span><span class="p">);</span>
 
 <span class="c">% Provide access to MATLAB and SPM</span>
-<span class="c">%addpath(genpath(&#39;/Users/bramzandbelt/Documents/MATLAB/spm12/&#39;))</span>
-<span class="n">addpath</span><span class="p">(</span><span class="s">&#39;h:\common\matlab\spm12&#39;</span><span class="p">);</span>
+<span class="n">addpath</span><span class="p">(</span><span class="n">genpath</span><span class="p">(</span><span class="s">&#39;/Users/bramzandbelt/Documents/MATLAB/spm12/&#39;</span><span class="p">))</span>
+<span class="c">% addpath(&#39;h:\common\matlab\spm12&#39;);</span>
 
 <span class="c">% Provide access to a few toolboxes we are going to use</span>
 <span class="n">addpath</span><span class="p">(</span><span class="n">genpath</span><span class="p">(</span><span class="n">fullfile</span><span class="p">(</span><span class="n">workshop_dir</span><span class="p">,</span><span class="s">&#39;opt&#39;</span><span class="p">,</span><span class="s">&#39;gramm&#39;</span><span class="p">)))</span>
@@ -1472,15 +1472,18 @@ You will evaluate one or more figures from recent fMRI studies for clarity and c
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>simple_plot('boxplot',data_dir)</p>
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">simple_plot</span><span class="p">(</span><span class="s">&#39;boxplot&#39;</span><span class="p">,</span><span class="n">data_dir</span><span class="p">)</span>
+</pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -1732,8 +1735,8 @@ Statistical Software, 28(Code Snippet 1), 1 - 9. doi: <a href="http://dx.doi.org
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The fMRI dataset that you will visualize is from an fMRI experiment on response inhibition that was performed at the DCCN in 2016. The experimental details are not directly relevant for the purposes of the workshop, but a brief description of the task and analysis procedure is provided below.</p>
-<p>In this experiment, participants performed a stop-signal task in the scanner while BOLD-fMRI data were collected. On the majority of trials, participants made a bimanual response (i.e. a button press with their left and right index or middle fingers) to a visual stimulus. Occassionally, this visual stimulus was followed by another visual stimulus. There were four different secondary stimuli, instructing them either (<strong>1</strong>) to stop their left hand, but continue their right hand response (<strong>stop_left trial</strong>), or (<strong>2</strong>) to stop their right hand, but continue their left hand response (<strong>stop_right trial</strong>), or (<strong>3</strong>) to stop both their left hand and their right hand response (<strong>stop_both trial</strong>), or (<strong>4</strong>) not to stop any response and to continue the trial as planned (<strong>ignore trial</strong>).</p>
-<p>The fMRI data was analyzed in SPM12 using a fairly common approach: standard preprocessing steps were followed by first-level statistical analysis according to a general linear model, which in turn were followed by a whole-brain voxel-wise random effects analysis at the group level.
+<p>In this experiment, participants performed a stop-signal task in the scanner while BOLD-fMRI data were collected. On the majority of trials, participants made a bimanual response (i.e. a button press with their left and right index or middle fingers) to a visual stimulus. Occasionally, this visual stimulus was followed by another visual stimulus. There were four different secondary stimuli, instructing them either (<strong>1</strong>) to stop their left hand, but continue their right hand response (<strong>stop_left trial</strong>), or (<strong>2</strong>) to stop their right hand, but continue their left hand response (<strong>stop_right trial</strong>), or (<strong>3</strong>) to stop both their left hand and their right hand response (<strong>stop_both trial</strong>), or (<strong>4</strong>) not to stop any response and to continue the trial as planned (<strong>ignore trial</strong>).</p>
+<p>The fMRI data was analyzed in SPM12 using a fairly common approach: standard preprocessing steps were followed by first-level statistical analysis according to a general linear model, which in turn was followed by a whole-brain voxel-wise random effects analysis at the group level.
 Here, we will visualize the results from the analysis focusing on the comparison of brain activation between stop_left and stop_both trials.</p>
 <p>The data are in the directory <code>.../data/workshop_fmri/fmri/</code>, which is organized as follows:</p>
 
@@ -1838,7 +1841,7 @@ Here, we will visualize the results from the analysis focusing on the comparison
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[68]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="c">%%python</span>
@@ -1853,7 +1856,7 @@ Here, we will visualize the results from the analysis focusing on the comparison
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[68]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 
