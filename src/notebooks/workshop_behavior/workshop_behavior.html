@@ -609,9 +609,39 @@ body {font-family: "Lato", sans-serif}
     </div>
   </div>
   <p class="w3-justify">
-  Upon taking a closer look, the data reveals the large individual differences, and the overlap between the two groups.
+  The data show large individual differences and overlap between the two groups. In group 2, except for two potential outliers showing large negative effects, the remaining observations are within the range observed for group 1. Six participants from group 2 have differences suggesting an effect in the same direction as group 1, two are near zero, and three go in the opposite direction. So, clearly, the lack of a significant difference between conditions in group 2 is not supported by the data: yes, group 2 has overall smaller differences than group 1, but if group 1 is used as a control group, then most participants in group 2 appear to have effects similar to those of controls. Or so it seems, until we explore the nature of the difference scores by visualizing paired observations in each group
   </p>
 
+  <pre align="left" class="w3-code">
+    % Plot differences between paired groups
+    rousselet_plot(data,'paired_groups');
+  </pre>
+
+  <div class="w3-container w3-content w3-center">
+    <img src="images/rousselet_paired_groups.png" width="60%">
+    <div class="w3-small">
+      Rousselet et al., (2016) Fig.1 plot of differences between conditions among participants.
+    </div>
+  </div>
+
+  <p class="w3-justify">
+  In group 1, as already observed, results in condition 2 are overall larger than in condition 1. In addition, participants with larger scores in condition 1 tend to have proportionally larger differences between conditions 1 and 2. Such relationship seems to be absent in group 2, which suggests that the two groups differ not only in the overall sensitivity to the experimental manipulation, but that other factors could be at play in group 1 and not in group 2. Thus, the group differences might actually be much more subtle than suggested by our first analyses.
+  </p>
+
+  <pre align="left" class="w3-code">
+    % Plot differences between conditions
+    rousselet_plot(data,'paired_conditions');
+  </pre>
+
+  <div class="w3-container w3-content w3-center">
+    <img src="images/rousselet_paired_conditions.png" width="60%">
+    <div class="w3-small">
+      Rousselet et al., (2016) Fig.1 plot of differences between conditions
+    </div>
+  </div>
+<p class="w3-justify">
+  The group dichotomy is easier to appreciate in Fig. 1D, which shows a scatterplot of the paired observations for the two groups. In group 1, the majority of paired observations are above the unity line, demonstrating an overall group effect; there is also a positive relationship between the scores in condition 2 and the scores in condition 1. Again, no such relationship seems to be present in group 2. In particular, the two larger negative scores in group 2 are not associated with participants who scored particularly high or low in condition 1, giving us no clue as to the origin of these seemingly outlier scores.
+</p>
   <div class="w3-container w3-content w3-example">
     <h3 align="left" class="w3-wide">Take home message</h3>
     <p class="w3-justify">

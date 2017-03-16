@@ -42,6 +42,49 @@ function rousselet_plot(data,do_this)
             g.set_title('Differences: condition2 - condition1');
             g.set_names('x',' ','y','Scores differences(a.u)');            
             g.draw();
+            
+        case 'paired_groups'
+            
+            % Make pairwise comparisons
+            figure;
+            clear g
+            g(1,1) = gramm('x',data.condition(strcmp(data.group,'group1')),'y',data.value(strcmp(data.group,'group1')),...
+                'color',data.participant(strcmp(data.group,'group1')));
+            g(1,1).geom_line();
+            g(1,1).geom_point();
+            g(1,1).set_title('group 1');
+            g(1,1).set_names('x',' ','y','Scores (a.u)');                        
+            g(1,1).no_legend();
+            
+            g(1,2) = gramm('x',data.condition(strcmp(data.group,'group2')),'y',data.value(strcmp(data.group,'group2')),...
+                'color',data.participant(strcmp(data.group,'group2')));
+            g(1,2).geom_line();
+            g(1,2).geom_point();
+            g(1,2).set_title('group 2');
+            g(1,2).set_names('x',' ','y','Scores (a.u)');                        
+            g(1,2).no_legend();
+            
+            g.axe_property('YLim',[0,20]);
+            g.set_title('Paired observations')
+            g.draw();
+            
+            case 'paired_conditions'
+            
+            % Make pairwise comparisons
+            figure;
+            clear g
+            g = gramm('x',data.value(strcmp(data.condition,'condition1')),...
+                'y',data.value(strcmp(data.condition,'condition2')),...
+                'color',data.group(strcmp(data.condition,'condition1')));            
+            g.geom_point();
+            g.set_title('group 1');
+            g.set_names('x','Condition 1','y','Condition 2');                                    
+            
+            %g.axe_property('YLim',[0,20]);
+            g.set_title('Paired observations')
+            g.geom_abline();
+            g.draw();
+            
         
         otherwise
             disp('Something went wrong!')
