@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+<title>data visualization workshop - behavioral</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+body {font-family: "Lato", sans-serif}
+.mySlides {display: none}
+</style>
+<body>
+
+  <!-- Navbar -->
+  <div class="w3-top">
+    <div class="w3-bar w3-black w3-card-2">
+      <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-opennav w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+      <a href="#intro" class="w3-bar-item w3-button w3-padding-large w3-hide-small">INTRO</a>
+      <a href="#plotdata" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PLOT DATA</a>
+      <a href="#design" class="w3-bar-item w3-button w3-padding-large w3-hide-small">DESIGN</a>
+      <a href="#visualizelow" class="w3-bar-item w3-button w3-padding-large w3-hide-small">LOW-DIMESION</a>
+      <a href="#casestudy" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CASE STUDY</a>
+      <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
+    </div>
+  </div>
+
+  <!-- Navbar on small screens -->
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+    <a href="#intro" class="w3-bar-item w3-button w3-padding-large">INTRO</a>
+    <a href="#plotdata" class="w3-bar-item w3-button w3-padding-large">PLOT DATA</a>
+    <a href="#design" class="w3-bar-item w3-button w3-padding-large">DESIGN</a>
+    <a href="#visualizelow" class="w3-bar-item w3-button w3-padding-large">LOW-DIMESION</a>
+    <a href="#casestudy" class="w3-bar-item w3-button w3-padding-large">CASE STUDY</a>
+</div>
+
+<!-- Page content -->
+
+<div class="w3-display-container w3-center">
+    <img src="images/0_Donders_d_screen.png" style="width:100%">
+    <div align="right" class="w3-display-bottomright w3-container w3-text-white w3-padding-32 w3-hide-small">
+      <h3 class="w3-wide w3-padding-10">DATA VISUALIZATION</h3>
+      <p class="w3-wide">behavioral workshop</p>
+    </div>
+</div>
+
+<!-- Introduction and exercise 1 - evaluate figures -->
+<div class="w3-content" style="max-width:2000px;margin-top:46px">
+
+  <!-- The Starting up section -->
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="intro">
+    <h2 class="w3-wide">GETTING STARTED</h2>
+    <p class="w3-justify">Figures play a central role in the communication of research findings from scientific studies. Therefore, it is important that they accurately represent the underlying data. However, visualizations can be misleading and graphical design choices can bias perceptions (e.g. check out
+      <a href="https://flowingdata.com/2017/02/09/how-to-spot-visualization-lies/" target="_blank">this blogpost from Flowing Data</a>
+       ). This workshop aims to promote critical thinking about visualizing
+      scientific data and provides you with tools and advise that will help you make
+      better figures. More specifically, you will:</p>
+      <div align="left">
+        <ol type="1">
+            <li>evaluate figures from the literature;</li>
+            <li>see how data visualization complements statistical testing;</li>
+            <li>experience how certain graph types are easier to decode than others;</li>
+            <li>experience the limitation of our perception</li>
+            <li>learn how you may improve visualization of 2D data;</li>
+            <li>discuss how graphs imfluence your explanation.</li>
+        </ol>
+      </div>
+  </div>
+
+  <!-- Evaluating figures -->
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px">
+    <h2 class="w3-wide">EVALUATING FIGURES</h2>
+    <!-- <p class="w3-opacity"><i>We love music</i></p> -->
+    <p class="w3-justify">A 2012 survey of 1451 figures from 288 studies in top neuroscience journals found that scientific figures are often unclear and incomplete (Allen et al., 2012). This survey categorized each figure as 2D (e.g. bar, scatter, and line graphs) or 3D (e.g. fMRI statistical maps, time-frequency plots) and asked four questions:</p>
+      <div align="left">
+        <ol type="1">
+            <li>Is the dependent variable labeled?</li>
+            <li>Is the scale of the dependent variable indicated?</li>
+            <li>Where applicable, is a measure of uncertainty displayed?</li>
+            <li>Is the type of uncertainty (e.g. standard error of the mean) defined in the figure or legend?</li>
+        </ol>
+      </div>
+      <p class="w3-justify">
+        The figure below shows the survey's results: as compared to displays of 2D data, visualizations of
+        3D data often lack labels and rarely depict measures of uncertainty.
+      </p>
+    <img src="images/1_Allen_et_al_2012_FigS1A_Survey_results_by_journal.jpeg" width="100%">
+    <div class="w3-small">
+      <b>Survey results separated by journal.</b> (A) Mean proportion of 2D (white) and 3D (dark gray) figures displaying each feature.
+      Error bars denote 95% non-parametric confidence intervals (10,000 resamples).
+      NN = Nature Neuroscience; NE = Neuron; JN = Journal of Neuroscience;
+      FSN = Frontiers in Systems Neuroscience; NI = Neuroimage; HBM = Human Brain Mapping.
+    </div>
+    <p class="w3-justify w3-example">
+      <b>EXERCISE 1</b> </br>
+      In this section we try to evaluate one or more of these figues from some recent publications for clarity and completeness.
+      You can guide your evaluation by the four questions above and the more comprehensive checklist
+      <a href="../../../documents/checklist_scientific_figures.pdf" target="_blank">given here</a>.
+    </p>
+
+<!-- CASES for evaluating figures -->
+<div class="w3-container w3-content w3-center">
+  <div class="w3-container w3-content w3-center">
+      <div class="w3-container w3-content w3-center">
+        <h3 class="w3-wide w3-left">case 1</h3>
+
+        <img src="images/case_1.jpg" width="100%">
+        <div class="w3-small w3-justify">
+          <p class="w3-justify">
+          <b>case 1. Figure 6.</b>
+          Interference with cyclin D function on Night 1 inhibits S- and G2/M-phase progression over the following day and Night 2. A, Administration of PD 0332991, a CDK4/6 inhibitor, at ZT22 of Night 1 leads to a reduction in the expression of cyclins A2 and B2 on Night 2 (ZT19′ and ZT23′, combined). B, Reduction in the number of BrdU+ cells during the day (ZT11′) and Night 2 (ZT15′), after a 4 h exposure to BrdU (immersion). n = 5–6 fish per time point; mean ± SEM; *p < 0.05 relative to control. ZT0 is lights-on time.
+          </p>
+          <p class="w3-justify">
+            <b>Source:</b>
+            Veronica Akle, Alexander J. Stankiewicz, Vasili Kharchenko, Lili Yu, Peter V. Kharchenko and Irina V. Zhdanova
+            Journal of Neuroscience 15 February 2017, 37 (7) 1900-1909; doi: <a href="https://doi.org/10.1523/JNEUROSCI.3222-16.2017" target="_blank">10.1523/JNEUROSCI.3222-16.2017</a>
+
+          </p>
+        </div>
+      </div>
+
+      <div class="w3-container w3-content w3-center">
+        <h3 class="w3-wide w3-left">case 2</h3>
+
+        <img src="images/case_2.png" width="100%">
+        <div class="w3-small w3-justify">
+          <b>case 2. Figure 2.</b>
+          Error distributions across all participants (and all features) within the control and the ASD groups. The number of responses that are distributed uniformly from −180 to 180° (shaded area) is indicative of increased guessing (and lower retrieval success rate) in the ASD group, but the concentration parameter k (describing the response variability) of the von Mises component is similar across the 2 groups.
+        </div>
+
+        <p class="w3-justify">
+          <b>Source:</b>
+          Rose A. Cooper, Franziska R. Richter, Paul M. Bays, Kate C. Plaisted-Grant, Simon Baron-Cohen, Jon S. Simons; Reduced Hippocampal Functional Connectivity During Episodic Memory Retrieval in Autism. Cereb Cortex 2017; 27 (2): 888-902. doi: <a href="https://doi.org/10.1093/cercor/bhw417" target="_blank">10.1093/cercor/bhw417</a>
+        </p>
+      </div>
+
+      <div class="w3-container w3-content w3-center">
+        <h3 class="w3-wide w3-left">case 3</h3>
+
+        <img src="images/case_4.png" width="100%">
+        <div class="w3-small w3-justify">
+          <b>case 3. Figure 5.</b>
+          Volume of face-selective activations across the rVTC partitions. (A) Anatomical partitions and face activations are rendered on the surface of the right VTC from representative 9- and 36-year-old subjects. Face activations were defined based on selectivity for child faces versus objects ([child faces > cars + novel objects], T > 3); or selectivity for adult faces versus objects ([adult > car + objects], T > 3). The volumes of these activations were separately measured in each anatomical partition. (B–E) The total volume of activation to child faces (light bars) and to adult faces (dark bars) is plotted for the lateral fusiform gyrus (lFG), medial fusiform gyrus (mFG), collateral sulcus (CoS), and parahippocampal gyrus (PHG) in the right VTC (rVTC) averaged across 12 children (B,D) and 12 adults (C,E). (B,C) Data from the mid VTC, (D,E) from the posterior VTC. Error bars: group SEM.
+        </div>
+        <p class="w3-justify">
+          <b>Source:</b>
+        Golijeh Golarai, Alina Liberman, Kalanit Grill-Spector; Experience Shapes the Development of Neural Substrates of Face Processing in Human Ventral Temporal Cortex. Cereb Cortex 2017; 27 (2): 1229-1244. doi: <a href="https://doi.org/10.1093/cercor/bhv314" target="_blank">10.1093/cercor/bhv314</a>
+        </p>
+      </div>
+
+      <div class="w3-container w3-content w3-center">
+        <h3 class="w3-wide w3-left">case 4</h3>
+
+        <img src="images/case_5.png" width="100%">
+        <div class="w3-small w3-justify">
+          <b>case 4. Figure 3.</b>
+          Expectations about task context facilitate decision making (A) response time (RT) on correct decisions increased as a function of log(CPE). (B) RTs were similar on trials with congruent and incongruent stimuli, and there was no evidence that the relationship between RT and log(CPE) changed as a function of stimulus congruency. (C) Presenting the context cue early both decreased RTs on average and moderated the relationship between RT and log(CPE). (D) The relationship between RT and log(CPE) remained significant when restricting analysis to trials where the context repeated from the previous trial, but context switches moderated the effect of log(CPE). In all panels, error bars show within-subject 95% confidence intervals computed by multilevel bootstrap resampling after removing between-subject variance in median RT.
+        </div>
+        <p class="w3-justify">
+          <b>Source:</b>
+        Michael L. Waskom, Michael C. Frank, Anthony D. Wagner; Adaptive Engagement of Cognitive Control in Context-Dependent Decision Making. Cereb Cortex 2017; 27 (2): 1270-1284. doi: <a href="https://doi.org/10.1093/cercor/bhv333" target="_blank">10.1093/cercor/bhv333</a></p>
+      </div>
+
+      <div class="w3-container w3-content w3-center">
+        <h3 class="w3-wide w3-left">case 5</h3>
+
+        <img src="images/case_6.png" width="100%">
+        <div class="w3-small w3-justify">
+          <b>case 5. Figure 5.</b>
+          Study 1 behavioral results. Response time (A) and error rate (B) as a function of N dots in the reflection and repetition conditions. (C) Regression analysis of the W versus RT relationship (grand average in black, individual participants in gray, R2 indicates variance in grand-average RT explained by W). (D) Radar plot showing overlap between normalized W and RT. (E) Individual participant W versus RT slopes, organized cumulatively. (F) Individual participant R2, organized cumulatively. (G–J) Equivalent regression analysis on W versus Error rate.
+          <p class="w3-justify">
+            <b>Source:</b>
+          Alexis D.J. Makin, Damien Wright, Giulia Rampone, Letizia Palumbo, Martin Guest, Rhiannon Sheehan, Helen Cleaver, Marco Bertamini; An Electrophysiological Index of Perceptual Goodness. Cereb Cortex 2016; 26 (12): 4416-4434. doi: <a href="https://doi.org/10.1093/cercor/bhw255" target="_blank">10.1093/cercor/bhw255</a></p>
+        </div>
+      </div>
+  </div>
+
+    <div class="w3-container w3-content w3-example">
+      <h3 align="left" class="w3-wide">Take home message</h3>
+      <p class="w3-justify">
+        When designing and reviewing figures, carefully think about the design
+        and your audience. Also, try out your figures on colleagues who are not directly involved in your project.
+      </p>
+    </div>
+
+    <div class="w3-container w3-content">
+      <h3 align="left" class="w3-slim">Further reading:</h3>
+      <ul align="left">
+        <li>Allen, E. A., Erhardt, E. B., & Calhoun, V. D. (2012).
+          Data Visualization in the Neurosciences: Overcoming the Curse of Dimensionality. Neuron, 74(4), 603–608. <a href="https://doi.org/10.1016/j.neuron.2012.05.001" target="_blank">https://doi.org/10.1016/j.neuron.2012.05.001</a></li>
+          <li>Allen, E. A., & Erhardt, E. B. (2017). Visualizing Scientific Data. In J. T. Cacioppo, L. G. Tassinary, & G. G. Berntson (Eds.),
+            Handbook of Psychophysiology (4th ed., pp. 679–697). Cambridge: Cambridge University Press. <a href="https://doi.org/10.1017/9781107415782.031" target="_blank">https://doi.org/10.1017/9781107415782.031</a></li>
+          <li>Tufte, E. R. (1983). The Visual Display of Quantitative Information (1st edition). Graphics Press.</li>
+      </ul>
+    </div>
+</div>
+
+<!-- Plot data section - Anscombe's quartet -->
+<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="plotdata">
+  <h2 class="w3-wide">WHY VISUALIZE ANYWAY?</h2>
+  <!-- <p class="w3-opacity"><i>We love music</i></p> -->
+  <p class="w3-justify">In addition to communicating research findings, another purpose of data visualization is to guide data exploration. A common data analysis mistake is to skip data exploration and to immediately perform statistical tests and look of statistical significance. This happens especially when automated software and processing pipelines are in place. However, it is essential to visually inspect your data first, as it will help you to:
+  </p>
+    <div align="left">
+      <ul>
+          <li>understand broad features of the data;</li>
+          <li>inspect the qualitative features of the data;</li>
+          <li>discover new or unexpected patterns in the data.</li>
+      </ul>
+    </div>
+    <p class="w3-justify">
+      To illustrate the importance of data visualization in exploratory analysis, you will analyze a dataset known as Anscombe's quartet using a matlab visualization toolbox called <a href="https://github.com/piermorel/gramm" target="_blank">gramm</a>, which is inspired by Hadley Wickham's R library,
+      <a href="http://ggplot2.org/" target="_blank">ggplot2</a>, which in turn was inspired by Leland Wilkinson's book The Grammar of Graphics.
+    </p>
+
+    <h3> Anscombe's quartet</h3>
+    <p class="w3-justify">
+      Anscombe's quartet consists of four sets of x-y pairs. As you will see, descriptive statistics and statistical testing appears to suggest that these four sets are extremely similar, if not identical. However, simply plotting the data reveals that they are very different and that some of them violate the assumptions underlying the statistical tests employed.
+    </p>
+    <p class="w3-justify">
+      Before working with Anscombe's quartet dataset, run the following code to ensure access to the data and required toolboxes.
+    </p>
+
+    <pre align="left" class="w3-code">
+      % Start up Matlab 2016b from Start -> All Programs -> MATLAB R2016b -> MATLAB R2016b
+
+      % Add relevant toolboxes
+      workshop_dir    = '~/code/donders_data_visualization_workshop/';
+      data_dir        = [workshop_dir, 'data' filesep 'workshop_behavior' filesep];
+      working_dir     = [workshop_dir, 'src' filesep 'code' filesep 'workshop_behavior' filesep];
+
+      addpath(genpath([workshop_dir, 'opt']))
+      addpath(genpath([workshop_dir, 'data' filesep 'workshop_behavior']))
+      addpath(genpath([workshop_dir, 'src' filesep 'code' filesep 'workshop_behavior']))
+    </pre>
+
+    <h4>Anscombe's quartet - impressions from descriptive and inferential statistics</h4>
+
+    <p class="w3-justify w3-example">
+      <b>EXERCISE 2</b> </br>
+      In this section, try make inferences from the descriptive statistics of Anscombe's quartet alone. Think along as and when you generate figures.
+    </p>
+
+    <pre align="left" class="w3-code">
+      % First, get Anscombe's quartet data
+      anscombe = make_anscombes_quartet_data;
+
+      % Plot descriptive statistics
+      anscombes_plot(anscombe,'plot_statistics');
+    </pre>
+
+    <div class="w3-col">
+       <img src="images/anscombe_mean.png" alt="Anscombe means" style="width:60%">
+       <img src="images/anscombe_variance.png"  alt="Anscombe variance" style="width:60%">
+       <img src="images/anscombe_linear_regression.png" alt="Anscombe linear regression" style="width:60%">
+    </div>
+
+    <p class="w3-justify">
+      Upon comparing the plots you will notice that the means of x and y, variances of x and y, linear regression line, and correlation values are all quite similar (refer table below for specific values). Take a minute to reflect on what conclusions you can draw about the dataset with this information.
+    </p>
+
+    <table class="w3-table">
+      <tr>
+        <td><b>PROPERTY</b></td>
+        <td><b>VALUE</b></td>
+        <td><b>ACCURACY</b></td>
+      </tr>
+      <tr>
+        <td>Mean of x</td>
+        <td>9</td>
+        <td>exact</td>
+      </tr>
+      <tr>
+        <td>Sample variance of x</td>
+        <td>11</td>
+        <td>exact</td>
+      </tr>
+      <tr>
+        <td>Mean of y</td>
+        <td>7.50</td>
+        <td>to 2 decimal places</td>
+      </tr>
+      <tr>
+        <td>Sample variance of y</td>
+        <td>4.125</td>
+        <td>+/- 0.003</td>
+      </tr>
+      <tr>
+        <td>Correlation between x and y</td>
+        <td>0.816</td>
+        <td>to 3 decimal places</td>
+      </tr>
+      <tr>
+        <td>Linear regression line</td>
+        <td>y = 3.00 + 0.500x</td>
+        <td>to 2 and 3 decimal places, respectively</td>
+      </tr>
+    </table>
+
+    <p class="w3-justify">
+      Now let's plot just the raw data.
+    </p>
+    <pre align="left" class="w3-code">
+      % Plot raw data
+      anscombes_plot(anscombe,'plot_raw_data');
+    </pre>
+
+    <div class="w3-container w3-content w3-center">
+      <img src="images/anscombe_raw_data.png" width="100%">
+      <div class="w3-small">
+        Anscombe's quartet raw data.
+      </div>
+    </div>
+
+    <p class="w3-justify">
+      It is immediately clear that four datasets are very different! You might want to know that a somewhat similar quartet exists for ANOVA interaction effects, described by
+      <a href="https://dx.doi.org/10.1016/j.cortex.2015.07.031" target="_blank">Wagenmakers</a>.
+    </p>
+
+
+  <div class="w3-container w3-content w3-example">
+    <h3 align="left" class="w3-wide">Take home message</h3>
+    <p class="w3-justify">
+      Always plot your data! Graphs are essential to good statistical analysis.
+    </p>
+  </div>
+
+  <div class="w3-container w3-content">
+    <h3 align="left" class="w3-slim">Further reading:</h3>
+    <ul align="left">
+      <li>Anscombe, F. J. (1973). Graphs in Statistical Analysis. The American Statistician, 27(1), 17. <a href="https://doi.org/10.2307/2682899" target="_blank">https://doi.org/10.2307/2682899</a></li>
+      <li>Wagenmakers, E.-J. (2015). A quartet of interactions. Cortex, 73, 334–335.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Design for graphical perception -->
+<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="design">
+    <h2 class="w3-wide">DESIGN: GRAPHICAL PERCEPTION</h2>
+    <p class="w3-justify">
+  The very same dataset can be visualized in many ways (for a nice example, see
+  <a href="https://flowingdata.com/2017/01/24/one-dataset-visualized-25-ways/" target="_blank">this blogpost from Flowing Data</a>
+  or
+  <a href"http://www.scribblelive.com/blog/2012/07/27/45-ways-to-communicate-two-quantities/" target="_blank">this page</a> that visualizes the bumbers 75 and 37 in 45 different ways!). The questions in the checklist above are useful to consider when designing your scientific figures. In addition, you may want to take the perceptual capacities of your readers into account, because not all of the representations are easy to interpret. Research in this regard, which quite literally spans over a century now, has shown that certain graphical representations result in better perceptual decoding, and hence in easier recognition of patterns and better understanding of data. The following exercises are based on <a href="http://www.jstor.org/stable/2681528" target="_blank">Haemer, 1947</a> and <a href="https://www.cambridge.org/core/books/handbook-of-psychophysiology/EACAC4007D68C77D20B912D18C78A370" target="_blank">Allen & Erhardt (2017)</a></p>
+
+  <h3> Decoding information from graphs: visual attributes </h3>
+
+  <p class="w3-justify">
+    Data visualizations communicate numbers in terms of visual attributes (e.g. color, shape, size) of geometric objects (e.g. bars, lines, points). Communication is effective only if the reader is able to perceptually decode the information. Information stored in graphs can be decoded through several visual operations, or 'elementary perceptual tasks'. For example, judging the shade of a color, judging the volume or area of an object, or judging the position of a point along a common scale. As it turns out, decoding efficiency and accuracy differs between elementary perceptual tasks.</p>
+
+  <p class="w3-justify w3-example">
+    <b>EXERCISE 3</b> </br>
+    In groups of 2 or three, try to recognise some of the advantages and disadvantages of a few graphical representations. The following figure plots the same seven values (across rows) using six different visual attributes (across columns). Can you sort the rows by magnitude?
+  </p>
+
+  <pre align="left" class="w3-code">
+    graphical_perception('decoding_visual_attributes')
+  </pre>
+
+  <div class="w3-container w3-content w3-center">
+    <img src="images/visual_attributes_case1.png" width="100%">
+  </div>
+  <p class="w3-justify">
+  The correct ordering is C, G, E, B, F, A, D. You may have experienced that sorting is more efficient and accurate for attributes on the right as compared to attributes on the left. Indeed, experiments by William Cleveland and Robert McGill in the 1980s showed that the above elementary perceptual tasks can be ordered as followed (from most to least accurate):</p>
+
+    <ol align="left">
+      <li>Position along a common scale</li>
+      <li>Length and angle</li>
+      <li>Area</li>
+      <li>Volume</li>
+      <li>Color saturation</li>
+    </ol>
+  <h3>Decoding information from graphs: difference between curves</h3>
+
+  <p class="w3-justify">
+  You should also take into account perceptual limitations when visually comparing curves. The following figure plots three panels with two curves each. </p>
+
+  <p class="w3-justify w3-example">
+    <b>EXERCISE 4</b> </br>
+    Can you determine how the difference between curves evolves as a function of x (e.g. increase/deccrease linearly or exponentially, or remains constant)? Do make predictions before finding out the answers.
+  </p>
+
+  <pre align="left" class="w3-code">
+    graphical_perception('decoding_differences')
+  </pre>
+
+  <div class="w3-container w3-content w3-center">
+    <img src="images/visual_attributes_case2.png" width="100%">
+  </div>
+
+  <p class="w3-justify">
+    The correct answers are: difference remains constants (left panel), difference increases linearly (middle panel), and difference increases exponentially. If you are surprised by the answers, consider the following. To determine the difference between curves, we must judge the vertical distance between them. However, our brains tend to judge the minimum distance between the curves, rather than the vertical distance. <b>The upshot is that if the difference between curves is of interest, then plot this directly.</b>
+  </p>
+
+  <pre align="left" class="w3-code">
+    graphical_perception('plot_differences')
+  </pre>
+
+  <div class="w3-container w3-content w3-center">
+    <img src="images/visual_attributes_case2_answers.png" width="100%">
+  </div>
+
+
+    <div class="w3-container w3-content w3-example">
+      <h3 align="left" class="w3-wide">Take home message</h3>
+      <p class="w3-justify">
+        When designing visualizations, take our perceptual abilities into account.
+      </p>
+    </div>
+
+    <div class="w3-container w3-content">
+      <h3 align="left" class="w3-slim">Further reading:</h3>
+      <ul align="left">
+
+        <li>Cleveland, W. S., Diaconis, P., & Mcgill, R. (1982). Variables on Scatterplots Look More Highly Correlated When the Scales Are Increased. Science, 216(4550), 1138–1141. <a href="https://doi.org/10.1126/science.216.4550.1138" target="_blank"> https://doi.org/10.1126/science.216.4550.1138</a></li>
+        <li>Cleveland, W. S., & McGill, R. (1985). Graphical perception and graphical methods for analyzing scientific data. Science, 229(4716), 828–833.</li>
+        <li>Haemer, K. W. (1947). Hold That Line. A Plea for the Preservation of Chart Scale Rulings. The American Statistician, 1(1), 25. <a href="https://doi.org/10.2307/2681528" target="_blank"> https://doi.org/10.2307/2681528</a></li>
+        <li>Heer, J., & Bostock, M. (2010). Crowdsourcing Graphical Perception: Using Mechanical Turk to Assess Visualization Design. In Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (pp. 203–212). New York, NY, USA: ACM.<a href="https://doi.org/10.1145/1753326.1753357" target="_blank"> https://doi.org/10.1145/1753326.1753357</a></li>
+        <li>Lewandowsky, S., & Spence, I. (1989). Discriminating Strata in Scatterplots. Journal of the American Statistical Association, 84(407), 682–688. <a href="https://doi.org/10.1080/01621459.1989.10478821" target="_blank">https://doi.org/10.1080/01621459.1989.10478821</a></li>
+
+      </ul>
+    </div>
+</div>
+
+<!--  --------- SHOW MORE, HIDE LESS section -------- -->
+<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="visualizelow">
+    <h2 class="w3-wide">VISUALIZING LOW-DIMENSIONAL DATA</h2>
+    <h3>Show more, hide less</h3>
+    <p class="w3-justify">Well, show as much as possible, at least. While Anscombe’s quartet is a great example to argue for showing all data, the biggest opposition comes in the form of it being too much information. Barplots, for example, are widely used for their simplicity. They tell a story that’s easy to understand and compare, one may say. Let’s consider an example from Allen et al., (2012). </p>
+
+    <p class="w3-justify w3-example">
+      <b>EXERCISE 5</b> </br>
+      Here is a dataset of 50 samples responses, collected under conditions 1, 2, and 3. Visualize this dataset using simple plots and infer as much information as possible, and make predictions about the dataset - about the relation between responses and the conditions as we go along.
+    </p>
+
+    <pre align="left" class="w3-code">
+      % Make data similar to Fig.2 Allen et al (2012)
+      data_simple = make_simple_plot_data;
+
+      % Visualize Allen et al (2012) Fig.2 - bar plot
+      simple_plot('barplot', data_dir);
+    </pre>
+
+    <div class="w3-container w3-content w3-center">
+      <img src="images/simple_barplot.png" width="50%">
+    </div>
+
+    <p class="w3-justify">In this figure, bar plot displays the sample mean and standard error (in other cases, it might be standard deviation). Such plots are -</p>
+      <ul align="left">
+        <li>easy to generate and comprehend; </li>
+        <li>can efficiently contrast a large number of conditions in a small  space; </li>
+        <li>effective for displaying frequencies or proportions</li>
+      </ul>
+
+    <p class="w3-justify">
+      However, bar plots are not without problems. They reveal very little about the distribution of data and can therefore be misleading (for a great example and funny initiative, see the <a href="https://www.kickstarter.com/projects/1474588473/barbarplots" target="_blank">#barbarplots Kickstarter project</a>). In fact, bar plots are only suitable for visualizing a set of counts or proportions (e.g. <a href="http://www.nature.com/nmeth/journal/v11/n2/full/nmeth.2813.html" target="_blank">Krzywinski & Altman, 2014</a>).
+    </p>
+    <p class="w3-justify">
+      The bar graph appears to suggest that the conditions have a similar effect on the response variable.
+    </p>
+
+    <p class="w3-justify">
+      Now, visualise the same data using box plot
+    </p>
+
+    <pre align="left" class="w3-code">
+      % Visualize Allen et al (2012) Fig.2 - box plot
+      simple_plot('boxplot', data_dir);
+    </pre>
+
+    <div class="w3-container w3-content w3-center">
+      <img src="images/simple_boxplot.png" width="50%">
+    </div>
+
+  <p class="w3-justify">
+    Clearly, box plots provide a richer view of the data:
+  </p>
+    <ul align="left">
+      <li>the line inside the box displays the <b>median</b></li>
+      <li>the bottom and top of the box show the <b>first and third quartiles</b></li>
+      <li>the whiskers show <b>the lowest and highest data point still within 1.5 IQR of the lower and higher quartiles</b>, respectively;</li>
+      <li>the dots show <b>outlying values</b> (i.e. beyond 1.5 times the interquartile range), if any.</li>
+    </ul>
+  <p class="w3-justify">
+  Furthermore, notice that this figure now shows the range of the data and that <b>the response values could take both positive and negative values!</b> Such information is hidden from your reader if you only plot the means.</p>
+
+  <p class="w3-justify">
+  Now, let's visualize the same data again with a violin plot with superimposed the actual data points.</p>
+    <pre align="left" class="w3-code">
+      % Visualize Allen et al (2012) Fig.2 - violin plot
+      simple_plot('violinplot', data_dir);
+    </pre>
+
+    <div class="w3-container w3-content w3-center">
+      <img src="images/simple_violinplot.png" width="50%">
+    </div>
+
+  <p class="w3-justify">
+    Violin plot shows smooth histograms of the dataset, which provide information about the distribution of responses. While it is absolutely true that the means across the three conditions do not change much, with the violin plot, we would not conclude that condition has no effect on the response. <b>The violin plot reveals differences in distributions across the three conditions and suggests that assumption of normality (required for parameteric analyses such as ANOVA) is violated under conditions 2 and 3</b>: under condition 2 the distribution is heavy-tailed, whereas under condition 3 it is bimodal. Advantages of using such a plot are - </p>
+    <ul align="left">
+      <li>full shape of distribution is visualized</li>
+      <li>can also overlay descriptive statistics</li>
+      <li>every data point can be displayed (in case of
+        bean plots)</li>
+    </ul>
+
+    <p class="w3-justify">
+      If you prefer not to provide all of the data points, but just the distribution, it might be worthwhile to see if you can embed a box plot inside a violin plot. </p>
+
+    <pre align="left" class="w3-code">
+      % Visualize Allen et al (2012) Fig.2 - violin plot
+      simple_plot('violinboxplot', data_dir);
+    </pre>
+
+    <div class="w3-container w3-content w3-center">
+      <img src="images/simple_violinboxplot.png" width="50%">
+    </div>
+
+    <p class="w3-justify">
+      Here is a blogpost that talks about <a href="http://flowingdata.com/2012/05/15/how-to-visualize-and-compare-distributions/" target="_blank">visualizing and comparing distributions</a>. It includes box plots, histograms, density plots, violin plots, and bean plots.
+  </p>
+
+    <div class="w3-container w3-content w3-example">
+      <h3 align="left" class="w3-wide">Take home message</h3>
+      <p class="w3-justify">
+        Always plot your data! Graphs are essential to good statistical analysis.
+      </p>
+    </div>
+
+    <div class="w3-container w3-content">
+      <h3 align="left" class="w3-slim">Further reading:</h3>
+      <ul align="left">
+        <li>Kampstra, P. (2008). Beanplot: A Boxplot Alternative for Visual Comparison of Distributions. Journal of Statistical Software, 28(Code Snippet 1), 1 - 9. doi:  <a href="http://dx.doi.org/10.18637/jss.v028.c01" target="_blank">http://dx.doi.org/10.18637/jss.v028.c01</a></li>
+        <li>Rousselet, G. A., Foxe, J. J., & Bolam, J. P. (2016). A few simple steps to improve the description of group results in neuroscience. European Journal of Neuroscience. <a href="https://doi.org/10.1111/ejn.13400" target="_blank">https://doi.org/10.1111/ejn.13400</a></li>
+        <li>Yau, Nathan. "How to Visualize and Compare Distributions." FlowingData. Retrieved March 14, 2017, from <a href="http://flowingdata.com/2012/05/15/how-to-visualize-and-compare-distributions/" target="_blank"> http://flowingdata.com/2012/05/15/how-to-visualize-and-compare-distributions/</a></li>
+      </ul>
+    </div>
+</div>
+
+<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="casestudy">
+  <h2 class="w3-wide">CASE STUDY</h2>
+
+  <p class="w3-justify">
+    Holding on to an arbitrary <i>P</i> < 0.05 cut-off and plotting the same in a bargraph almost certainly hides the rich pattern that your dataset might have. But here are a few questions from Rousselet et al., (2016) that will help you guide your approach to making group-level comparisons:
+  </p>
+
+  <ol align="left">
+    <li>How many participants show an effect in the same direction as the group? It is possible to get significant group effects with few individual participants showing a significant effect themselves. Actually, with large enough sample sizes, you can pretty much guarantee significant group effects (Wagenmakers, 2007).</li>
+    <li>How many participants show no effect, or an effect in the opposite direction to that of the group?</li>
+    <li>Is there a smooth continuum of effects across participants, or can we identify subclusters of participants who appear to behave differently from the rest?</li>
+    <li>How large are the individual results?</li>
+  </ol>
+
+  <p class="w3-justify">
+    Let's now consider a typical experiment (example from Rousselet et al., (2016)), in which two groups of participants were tested in two conditions.
+  </p>
+
+  <pre align="left" class="w3-code">
+    % First import necessary data
+    full_filename = fullfile(which('data_rousselet.mat'));
+    load(full_filename);
+  </pre>
+
+  <p class="w3-justify">
+    Now, let's start exploring this dataset. Make a bar plot.
+  </p>
+  <pre align="left" class="w3-code">
+    % Plot bar graph
+    rousselet_plot(data,'barplot');
+  </pre>
+
+  <div class="w3-container w3-content w3-center">
+    <img src="images/rousselet_barplot.png" width="60%">
+    <div class="w3-small">
+      Rousselet et al., (2016) Fig.1 data in a bar plot
+    </div>
+  </div>
+    <p class="w3-justify">
+      An ANOVA on these data reveals a significant Group × Condition interaction (<i>F</i><sub>1,20</sub> = 8.345, <i>P</i> = 0.0091). Follow-up paired <i>t</i>-tests reveal a significant condition effect in group 1 (<i>t</i>(10) = 3.87, <i>P</i> = 0.003, difference = 1.24, difference's 95% confidence interval = [0.53, 1.95]), but not in group 2 (<i>t</i>(10) = 0.11, <i>P</i> = 0.92, difference = −0.03 [−0.71, 0.64]).
+    </p>
+  <p class="w3-justify">
+      With these results one might be tempted to conclude that group 1 is sensitive to the experimental manipulation and group 2 is not. Now try a box plot and see if you gain more information out of it.
+  </p>
+  <pre align="left" class="w3-code">
+    % Plot box plot
+    rousselet_plot(data,'boxplot');
+  </pre>
+
+  <div class="w3-container w3-content w3-center">
+    <img src="images/rousselet_boxplot.png" width="60%">
+    <div class="w3-small">
+      Rousselet et al., (2016) Fig.1 data in a box plot
+    </div>
+  </div>
+
+  <pre align="left" class="w3-code">
+    % Plot differences between conditions
+    rousselet_plot(data,'differences_condition');
+  </pre>
+
+  <div class="w3-container w3-content w3-center">
+    <img src="images/rousselet_diff_conditions.png" width="60%">
+    <div class="w3-small">
+      Rousselet et al., (2016) Fig.1 plot of differences between conditions
+    </div>
+  </div>
+  <p class="w3-justify">
+  Upon taking a closer look, the data reveals the large individual differences, and the overlap between the two groups.
+  </p>
+
+  <div class="w3-container w3-content w3-example">
+    <h3 align="left" class="w3-wide">Take home message</h3>
+    <p class="w3-justify">
+      Approach data analyses with specific questions and choose appropriate ways of visualising your results that answers those questions.
+    </p>
+  </div>
+
+  <div class="w3-container w3-content">
+    <h3 align="left" class="w3-slim">Further reading:</h3>
+    <ul align="left">
+      <li>Rousselet, G. A., Foxe, J. J., & Bolam, J. P. (2016). A few simple steps to improve the description of group results in neuroscience. European Journal of Neuroscience. <a href="https://doi.org/10.1111/ejn.13400" target="_blank">https://doi.org/10.1111/ejn.13400</a></li>
+    </ul>
+  </div>
+
+
+</div>
+
+<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="">
+  <h2 class="w3-wide">OTHER THINGS</h2>
+  <p class="w3-justify">
+    Some more things you might want to keep in mind when making your next figure:
+    <ol align="left">
+      <li><a href="https://jakevdp.github.io/blog/2014/10/16/how-bad-is-your-colormap/" target="_blank">How bad is your colormap?</a></li>
+    </ol>
+
+  </p>
+</div>
+
+<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="">
+  <h2 class="w3-wide">CHART SELECTION</h2>
+  <p class="w3-justify">Here is a non-exhaustive list of charts you could make that is appropriate to capture the effects present in your data. There is also an online, <a href="http://labs.juiceanalytics.com/chartchooser/index.html" target="_blank">interactive chart-chooser</a>.</p>
+  <img src="images/chart_selection_a_starter.jpg" width="100%">
+</div>
+
+<script>
+  // Used to toggle the menu on small screens when clicking on the menu button
+  function myFunction() {
+      var x = document.getElementById("navDemo");
+      if (x.className.indexOf("w3-show") == -1) {
+          x.className += " w3-show";
+      } else {
+          x.className = x.className.replace(" w3-show", "");
+      }
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  var modal = document.getElementById('ticketModal');
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+
+</body>
+</html>
