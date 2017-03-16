@@ -239,7 +239,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="c">%%python</span>
@@ -254,7 +254,7 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[53]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 
@@ -640,15 +640,13 @@ You will evaluate one or more figures from recent fMRI studies for clarity and c
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="c">% Define some directories</span>
-<span class="n">workshop_dir</span> <span class="p">=</span> <span class="s">&#39;/Users/bramzandbelt/surfdrive/projects/donders_data_visualization_workshop/&#39;</span><span class="p">;</span>
-<span class="c">% workshop_dir = &#39;h:\common\temporary\donders_data_visualization_workshop&#39;;</span>
+<span class="n">workshop_dir</span> <span class="p">=</span> <span class="s">&#39;h:\common\temporary\donders_data_visualization_workshop&#39;</span><span class="p">;</span>
 <span class="n">data_dir</span>     <span class="p">=</span> <span class="n">fullfile</span><span class="p">(</span><span class="n">workshop_dir</span><span class="p">,</span><span class="s">&#39;data&#39;</span><span class="p">,</span><span class="s">&#39;workshop_fmri&#39;</span><span class="p">);</span>
 <span class="n">glm_dir</span>      <span class="p">=</span> <span class="n">fullfile</span><span class="p">(</span><span class="n">workshop_dir</span><span class="p">,</span><span class="s">&#39;data&#39;</span><span class="p">,</span><span class="s">&#39;workshop_fmri&#39;</span><span class="p">,</span><span class="s">&#39;fmri&#39;</span><span class="p">,</span><span class="s">&#39;stat_stop_left_vs_stop_both&#39;</span><span class="p">);</span>
 <span class="n">roi_dir</span>      <span class="p">=</span> <span class="n">fullfile</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span><span class="s">&#39;fmri&#39;</span><span class="p">,</span><span class="s">&#39;region_of_interest_masks&#39;</span><span class="p">);</span>
 
-<span class="c">% Provide access to MATLAB and SPM</span>
-<span class="n">addpath</span><span class="p">(</span><span class="n">genpath</span><span class="p">(</span><span class="s">&#39;/Users/bramzandbelt/Documents/MATLAB/spm12/&#39;</span><span class="p">))</span>
-<span class="c">% addpath(&#39;h:\common\matlab\spm12&#39;);</span>
+<span class="c">% Provide access to SPM</span>
+<span class="n">addpath</span><span class="p">(</span><span class="s">&#39;h:\common\matlab\spm12&#39;</span><span class="p">);</span>
 
 <span class="c">% Provide access to a few toolboxes we are going to use</span>
 <span class="n">addpath</span><span class="p">(</span><span class="n">genpath</span><span class="p">(</span><span class="n">fullfile</span><span class="p">(</span><span class="n">workshop_dir</span><span class="p">,</span><span class="s">&#39;opt&#39;</span><span class="p">,</span><span class="s">&#39;gramm&#39;</span><span class="p">)))</span>
