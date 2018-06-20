@@ -3,14 +3,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Define some directories
-% workshop_dir = '/Users/bramzandbelt/surfdrive/projects/donders_data_visualization_workshop/';
 workshop_dir = 'h:\common\temporary\donders_data_visualization_workshop';
 data_dir     = fullfile(workshop_dir,'data','workshop_fmri');
 glm_dir      = fullfile(workshop_dir,'data','workshop_fmri','fmri','stat_stop_left_vs_stop_both');
 roi_dir      = fullfile(data_dir,'fmri','region_of_interest_masks');
 
 % Provide access to MATLAB and SPM
-%addpath(genpath('/Users/bramzandbelt/Documents/MATLAB/spm12/'))
 addpath('h:\common\matlab\spm12');
 
 % Provide access to a few toolboxes we are going to use
@@ -120,35 +118,13 @@ simple_plot('violinplot',data_dir)
 % 5. Visualizing high-dimensional data: fMRI data
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%% 5.1. Provide access to paths
-
-% Provide access to the paths
-workshop_dir = '/Users/bramzandbelt/surfdrive/projects/donders_data_visualization_workshop/';
-
-% Provide access to MATLAB and SPM
-addpath(genpath('/Users/bramzandbelt/Documents/MATLAB/spm12/'))
-
-% Provide access to a few toolboxes we are going to use
-addpath(genpath(fullfile(workshop_dir,'opt','gramm')))
-addpath(genpath(fullfile(workshop_dir,'opt','panel-2.12')))
-addpath(genpath(fullfile(workshop_dir,'opt','slice_display')))
-
-% Provide access to the code written for this workshop
-addpath(genpath(('/Users/bramzandbelt/surfdrive/projects/donders_data_visualization_workshop/src/code/workshop_fmri/')))
-
-%% 5.2. FMRI - preliminaries
-
-% Point to the directories containing the data ...
-workshop_dir    = '/Users/bramzandbelt/surfdrive/projects/donders_data_visualization_workshop/';
-data_dir        = fullfile(workshop_dir,'data','workshop_fmri');
-glm_dir         = fullfile(workshop_dir,'data','workshop_fmri','fmri','stat_stop_left_vs_stop_both');
-roi_dir         = fullfile(data_dir,'fmri','region_of_interest_masks');
+%% 5.1. FMRI - preliminaries
 
 % Load color maps
 colormaps_file  = fullfile(workshop_dir,'data','workshop_fmri','fmri','colormaps.mat');
 load(colormaps_file);
 
-%% 5.3. FMRI vis 01 - common design (thresholded t-map)
+%% 5.2. FMRI vis 01 - common design (thresholded t-map)
 
 % Initialize empty layers and settings variables
 layers                      = sd_config_layers('init',{'truecolor','blob'});
@@ -172,7 +148,7 @@ settings.fig_specs.title    = 'stop_{left} - stop_{both}';
 % Display the t-map overlaid on the anatomical MRI
 sd_display(layers,settings);
 
-%% 5.4. FMRI vis 02 - dual-coding design
+%% 5.3. FMRI vis 02 - dual-coding design
 
 % Initialize empty layers and settings variables
 layers                      = sd_config_layers('init',{'truecolor','dual','contour'});
@@ -200,7 +176,7 @@ settings.fig_specs.title    = 'stop_{left} - stop_{both}';
 % Display the t-map overlaid on the anatomical MRI
 sd_display(layers,settings);
 
-%% 5.5. FMRI vis 03 - dual-coding design w/ group mean T1, mask, and scatter
+%% 5.4. FMRI vis 03 - dual-coding design w/ group mean T1, mask, and scatter
 
 % Initialize empty layers and settings variables
 layers                      = sd_config_layers('init',{'truecolor','dual','contour','contour','contour'});
