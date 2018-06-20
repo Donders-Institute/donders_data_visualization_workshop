@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Define some directories
-workshop_dir = 'h:\common\temporary\donders_data_visualization_workshop';
+workshop_dir = 'h:\common\temporary\donders_data_visualization_workshop\donders_data_visualization_workshop-master\';
 data_dir     = fullfile(workshop_dir,'data','workshop_fmri');
 glm_dir      = fullfile(workshop_dir,'data','workshop_fmri','fmri','stat_stop_left_vs_stop_both');
 roi_dir      = fullfile(data_dir,'fmri','region_of_interest_masks');
